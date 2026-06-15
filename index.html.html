@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Anathi Madikazi | Data & Mathematical Sciences Professional</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:       #07090f;
+      --surface:  #0e1320;
+      --surface2: #131b2e;
+      --border:   #1a2540;
+      --accent1:  #3ecfff;   /* cyan */
+      --accent2:  #6c3fff;   /* violet */
+      --accent3:  #ff6b6b;   /* coral */
+      --green:    #00e58a;
+      --text:     #e6eaf4;
+      --muted:    #6e7f9a;
+      --font-h:   'Poppins', sans-serif;
+      --font-b:   'Inter', sans-serif;
+      --r:        14px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-b);
+      line-height: 1.72;
+    }
+
+    a { color: var(--accent1); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── NAV ─────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(7,9,15,0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem; height: 62px;
+    }
+    .logo {
+      font-family: var(--font-h); font-weight: 900; font-size: 1.15rem;
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      white-space: nowrap;
+    }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links a { color: var(--muted); font-size: 0.84rem; font-weight: 500; letter-spacing:.04em; transition: color .2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent1); text-decoration: none; }
+
+    /* ── HERO ────────────────────────────── */
+    .hero {
+      min-height: 96vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 5rem 2rem;
+      position: relative; overflow: hidden;
+    }
+    .hero::before, .hero::after {
+      content:''; position: absolute; border-radius: 50%;
+      filter: blur(110px); opacity: .14; pointer-events: none;
+    }
+    .hero::before { width:640px; height:640px; background: var(--accent2); top:-180px; left:-160px; }
+    .hero::after  { width:520px; height:520px; background: var(--accent1); bottom:-120px; right:-120px; }
+
+    .avatar {
+      width: 110px; height: 110px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.6rem; font-weight: 900; color: #fff;
+      font-family: var(--font-h);
+      margin-bottom: 1.6rem;
+      box-shadow: 0 0 0 4px rgba(62,207,255,.18), 0 0 40px rgba(62,207,255,.2);
+    }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: rgba(62,207,255,.1); border: 1px solid rgba(62,207,255,.3);
+      color: var(--accent1); font-size: .75rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      padding: .3rem 1rem; border-radius: 999px; margin-bottom: 1.4rem;
+    }
+    .badge span { width:7px; height:7px; border-radius:50%; background:var(--green); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+    .hero h1 {
+      font-family: var(--font-h);
+      font-size: clamp(2.2rem, 5.5vw, 4.4rem);
+      font-weight: 900; line-height: 1.08;
+      max-width: 780px; margin-bottom: 1rem;
+    }
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+
+    .hero-sub {
+      font-size: 1rem; color: var(--muted);
+      max-width: 580px; margin-bottom: 2.4rem; line-height: 1.7;
+    }
+
+    .pill-row {
+      display: flex; flex-wrap: wrap; gap: .6rem;
+      justify-content: center; margin-bottom: 2.2rem;
+    }
+    .pill {
+      font-size: .76rem; font-weight: 600; padding: .3rem .9rem;
+      border-radius: 999px; border: 1px solid var(--border);
+      color: var(--muted); background: var(--surface);
+    }
+
+    .cta-row { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap:.5rem;
+      padding: .72rem 1.7rem; border-radius: 999px;
+      font-weight: 600; font-size: .88rem; cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn:hover { transform: translateY(-2px); text-decoration: none; }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      color: #fff; box-shadow: 0 4px 22px rgba(62,207,255,.28);
+    }
+    .btn-ghost {
+      background: transparent; border: 1px solid var(--border); color: var(--text);
+    }
+    .btn-ghost:hover { border-color: var(--accent1); }
+
+    /* ── SECTIONS ────────────────────────── */
+    .section { padding: 5rem 2rem; }
+    .section.alt { background: var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+
+    .inner { max-width: 1080px; margin: 0 auto; }
+
+    .s-label {
+      font-size: .72rem; font-weight: 700; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--accent1); margin-bottom: .5rem;
+    }
+    .s-title {
+      font-family: var(--font-h);
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 700; margin-bottom: .5rem;
+    }
+    .s-desc { color: var(--muted); font-size: .92rem; max-width: 640px; margin-bottom: 2rem; }
+
+    /* ── ABOUT GRID ──────────────────────── */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1rem; margin-top: 1.8rem;
+    }
+    .info-card {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 1.3rem 1.5rem;
+    }
+    .info-card h4 {
+      font-size: .72rem; text-transform: uppercase;
+      letter-spacing: .1em; color: var(--muted); margin-bottom: .35rem;
+    }
+    .info-card p { font-size: .95rem; font-weight: 600; }
+
+    /* ── SKILLS ──────────────────────────── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: .9rem; margin-top: 1.8rem;
+    }
+    .skill-pill {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: var(--r); padding: .85rem 1.1rem;
+      display: flex; align-items: center; gap: .7rem;
+      font-size: .84rem; font-weight: 500;
+      transition: border-color .2s, transform .2s;
+    }
+    .skill-pill:hover { border-color: var(--accent1); transform: translateY(-2px); }
+    .dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; background: var(--accent1); }
+    .dot.v { background: var(--accent2); }
+    .dot.g { background: var(--green); }
+    .dot.c { background: var(--accent3); }
+
+    /* ── EXPERIENCE / TIMELINE ───────────── */
+    .timeline { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 1.8rem; }
+
+    .tl-card {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 1.6rem;
+      display: grid; grid-template-columns: auto 1fr;
+      gap: 1.2rem; align-items: start;
+      transition: border-color .2s;
+    }
+    .tl-card:hover { border-color: var(--accent2); }
+
+    .tl-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; flex-shrink: 0;
+    }
+
+    .tl-meta { display: flex; align-items: center; gap: .7rem; flex-wrap: wrap; margin-bottom: .4rem; }
+    .tl-tag {
+      font-size: .68rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; padding: .2rem .65rem;
+      border-radius: 999px; background: rgba(62,207,255,.1);
+      color: var(--accent1); border: 1px solid rgba(62,207,255,.2);
+    }
+    .tl-date { font-size: .78rem; color: var(--muted); }
+
+    .tl-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: .15rem; }
+    .tl-card .org { font-size: .85rem; color: var(--accent1); font-weight: 600; margin-bottom: .6rem; }
+    .tl-card ul { padding-left: 1.1rem; font-size: .87rem; color: var(--muted); display: flex; flex-direction: column; gap: .3rem; }
+    .tl-card ul li::marker { color: var(--accent1); }
+
+    /* ── PROJECTS ────────────────────────── */
+    .proj-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.2rem; margin-top: 1.8rem;
+    }
+    .proj-card {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 1.6rem;
+      display: flex; flex-direction: column; gap: .6rem;
+      transition: transform .2s, border-color .2s, box-shadow .2s;
+    }
+    .proj-card:hover {
+      transform: translateY(-4px); border-color: var(--accent1);
+      box-shadow: 0 8px 30px rgba(62,207,255,.1);
+    }
+    .proj-tag {
+      font-size: .68rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; padding: .22rem .7rem;
+      border-radius: 999px; width: fit-content;
+    }
+    .pt-cyan   { background:rgba(62,207,255,.1);  color:var(--accent1); border:1px solid rgba(62,207,255,.2); }
+    .pt-violet { background:rgba(108,63,255,.15); color:#a87aff;         border:1px solid rgba(108,63,255,.3); }
+
+    .proj-card h3 { font-size: 1rem; font-weight: 700; }
+    .proj-card p  { font-size: .84rem; color: var(--muted); flex: 1; }
+
+    .tag-row { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .4rem; }
+    .tech-tag {
+      font-size: .7rem; padding: .18rem .6rem;
+      border-radius: 4px; background: rgba(255,255,255,.05);
+      color: var(--muted); border: 1px solid var(--border);
+    }
+
+    /* ── EDUCATION ───────────────────────── */
+    .edu-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.2rem; margin-top: 1.8rem;
+    }
+    .edu-card {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 1.6rem;
+      transition: border-color .2s;
+    }
+    .edu-card:hover { border-color: var(--green); }
+    .edu-card .year { font-size: .78rem; color: var(--green); font-weight: 700; margin-bottom: .5rem; }
+    .edu-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: .2rem; }
+    .edu-card .inst { font-size: .86rem; color: var(--accent1); font-weight: 600; margin-bottom: .7rem; }
+    .edu-card p { font-size: .82rem; color: var(--muted); }
+
+    /* ── CONTACT ─────────────────────────── */
+    .contact-wrap {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1rem; margin-top: 1.8rem;
+    }
+    .contact-card {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 1.3rem 1.5rem;
+      display: flex; align-items: center; gap: 1rem;
+      transition: border-color .2s, transform .2s;
+    }
+    .contact-card:hover { border-color: var(--accent1); transform: translateY(-2px); text-decoration: none; }
+    .c-icon {
+      width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0;
+      background: var(--surface); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+    }
+    .c-label { font-size: .72rem; color: var(--muted); font-weight: 500; margin-bottom: .15rem; }
+    .c-value { font-size: .9rem; font-weight: 600; color: var(--text); }
+
+    /* ── FOOTER ──────────────────────────── */
+    footer {
+      text-align: center; padding: 2.5rem 2rem;
+      font-size: .8rem; color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+    footer strong { color: var(--accent1); }
+
+    /* ── FADE-IN ANIMATION ───────────────── */
+    .fadein { opacity: 0; transform: translateY(22px); transition: opacity .55s ease, transform .55s ease; }
+    .fadein.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ──────────────────────── */
+    @media (max-width: 660px) {
+      .about-grid, .contact-wrap { grid-template-columns: 1fr; }
+      .tl-card { grid-template-columns: 1fr; }
+      .nav-links { gap: 1rem; }
+      .nav-links a { font-size: .76rem; }
+      nav { padding: 0 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     NAVIGATION
+════════════════════════════════════════════ -->
+<nav>
+  <div class="logo">Anathi Madikazi</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+
+<!-- ══════════════════════════════════════════
+     HERO
+════════════════════════════════════════════ -->
+<section class="hero" id="home">
+  <div class="avatar">AM</div>
+
+  <div class="badge">
+    <span></span> Open to Opportunities · Cape Town &amp; Remote
+  </div>
+
+  <h1>
+    <em>Anathi Madikazi</em><br/>
+    Data &amp; Mathematical Sciences Professional
+  </h1>
+
+  <p class="hero-sub">
+    Diploma in Mathematical Sciences graduate (CPUT) with hands-on experience in statistical modelling,
+    machine learning, data analysis, and scientific computing. Experienced through work-integrated learning
+    at the Western Cape Department of Agriculture.
+  </p>
+
+  <div class="pill-row">
+    <div class="pill">Python · R · SQL · SAS</div>
+    <div class="pill">Power BI · ggplot2 · scikit-learn</div>
+    <div class="pill">Statistical Modelling</div>
+    <div class="pill">Machine Learning</div>
+    <div class="pill">Data Visualisation</div>
+  </div>
+
+  <div class="cta-row">
+    <a href="#contact" class="btn btn-primary">📬 Get In Touch</a>
+    <a href="#experience" class="btn btn-ghost">💼 View Experience</a>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     ABOUT
+════════════════════════════════════════════ -->
+<section class="section alt" id="about">
+  <div class="inner">
+    <p class="s-label">About Me</p>
+    <h2 class="s-title">Who I Am</h2>
+    <p class="s-desc">
+      A motivated and detail-oriented Mathematical Sciences graduate with strong foundations in applied
+      mathematics, statistics, data analysis, and scientific computing. I am passionate about using
+      data to drive meaningful decisions and solving real-world problems through quantitative methods.
+    </p>
+
+    <div class="about-grid">
+      <div class="info-card fadein">
+        <h4>📍 Location</h4>
+        <p>Mdantsane, Eastern Cape → Cape Town, Western Cape</p>
+      </div>
+      <div class="info-card fadein">
+        <h4>🎓 Qualification</h4>
+        <p>Diploma in Mathematical Sciences - CPUT (2025)</p>
+      </div>
+      <div class="info-card fadein">
+        <h4>💼 Latest Role</h4>
+        <p>Junior Data Analyst · Western Cape Dept. of Agriculture</p>
+      </div>
+      <div class="info-card fadein">
+        <h4>🎯 Target Roles</h4>
+        <p>Data Analyst · Statistician · Data Scientist · BI Developer</p>
+      </div>
+      <div class="info-card fadein">
+        <h4>📧 Email</h4>
+        <p>mdkmadikazi@gmail.com</p>
+      </div>
+      <div class="info-card fadein">
+        <h4>📞 Phone</h4>
+        <p>083 864 3511</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     SKILLS
+════════════════════════════════════════════ -->
+<section class="section" id="skills">
+  <div class="inner">
+    <p class="s-label">Technical Expertise</p>
+    <h2 class="s-title">Skills &amp; Tools</h2>
+    <p class="s-desc">Proficient across the full data pipeline - from collection and cleaning to modelling and storytelling.</p>
+
+    <div class="skills-grid">
+      <!-- Programming -->
+      <div class="skill-pill fadein"><span class="dot"></span>Python (pandas, NumPy, scikit-learn)</div>
+      <div class="skill-pill fadein"><span class="dot"></span>R (Statistical Programming)</div>
+      <div class="skill-pill fadein"><span class="dot"></span>SQL</div>
+      <div class="skill-pill fadein"><span class="dot"></span>SAS</div>
+      <!-- Visualisation -->
+      <div class="skill-pill fadein"><span class="dot v"></span>Power BI</div>
+      <div class="skill-pill fadein"><span class="dot v"></span>ggplot2</div>
+      <div class="skill-pill fadein"><span class="dot v"></span>matplotlib &amp; seaborn</div>
+      <!-- Stats & ML -->
+      <div class="skill-pill fadein"><span class="dot g"></span>Regression Analysis</div>
+      <div class="skill-pill fadein"><span class="dot g"></span>Chi-square &amp; Hypothesis Testing</div>
+      <div class="skill-pill fadein"><span class="dot g"></span>Cronbach's Alpha</div>
+      <div class="skill-pill fadein"><span class="dot g"></span>Biostatistics</div>
+      <div class="skill-pill fadein"><span class="dot g"></span>Descriptive Statistics</div>
+      <div class="skill-pill fadein"><span class="dot g"></span>Machine Learning (supervised &amp; unsupervised)</div>
+      <div class="skill-pill fadein"><span class="dot g"></span>Mathematical Modelling</div>
+      <!-- Tools -->
+      <div class="skill-pill fadein"><span class="dot c"></span>MS Excel</div>
+      <div class="skill-pill fadein"><span class="dot c"></span>LaTeX</div>
+      <div class="skill-pill fadein"><span class="dot c"></span>Data Cleaning &amp; Preparation</div>
+      <div class="skill-pill fadein"><span class="dot c"></span>Numerical Methods &amp; Operations Research</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     EXPERIENCE
+════════════════════════════════════════════ -->
+<section class="section alt" id="experience">
+  <div class="inner">
+    <p class="s-label">Work History</p>
+    <h2 class="s-title">Professional Experience</h2>
+
+    <div class="timeline">
+
+      <!-- Job 1 -->
+      <div class="tl-card fadein">
+        <div class="tl-icon">📊</div>
+        <div>
+          <div class="tl-meta">
+            <span class="tl-tag">Work-Integrated Learning</span>
+            <span class="tl-date">Jul 2025 – Dec 2025</span>
+          </div>
+          <h3>Junior Data Analyst</h3>
+          <div class="org">Western Cape Department of Agriculture, South Africa</div>
+          <ul>
+            <li>Applied statistical and analytical techniques to real-world agricultural datasets to support data-driven decision-making.</li>
+            <li>Performed data collection, cleaning, and preparation using R and Excel, ensuring data integrity prior to analysis.</li>
+            <li>Built data visualisations and generated reports to communicate analytical findings to stakeholders.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Job 2 -->
+      <div class="tl-card fadein">
+        <div class="tl-icon">🎓</div>
+        <div>
+          <div class="tl-meta">
+            <span class="tl-tag">Academic Position</span>
+            <span class="tl-date">Aug 2024 – Oct 2024</span>
+          </div>
+          <h3>Student Assistant</h3>
+          <div class="org">Golden Arrow Project, Cape Peninsula University of Technology (CPUT)</div>
+          <ul>
+            <li>Assisted with project-related data handling and documentation.</li>
+            <li>Supported academic staff and students during project execution phases.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     PROJECTS
+════════════════════════════════════════════ -->
+<section class="section" id="projects">
+  <div class="inner">
+    <p class="s-label">Academic Work</p>
+    <h2 class="s-title">Projects</h2>
+    <p class="s-desc">Research and applied projects completed during my Diploma at CPUT.</p>
+
+    <div class="proj-grid">
+
+      <!-- Project 1 -->
+      <div class="proj-card fadein">
+        <span class="proj-tag pt-cyan">Mathematical Modelling · 2025</span>
+        <h3>Malaria Transmission Modelling - SAIR Model</h3>
+        <p>
+          Developed a compartmental SAIR (Susceptible–Asymptomatic–Infectious–Recovered) model to investigate
+          endemic malaria transmission dynamics. Derived the basic reproduction number R₀ using the
+          next-generation matrix method; performed equilibrium and stability analysis.
+          Conducted numerical simulations across multiple parameter scenarios to assess how varying
+          transmission and recovery rates influence long-term malaria prevalence, providing insights
+          for public health intervention strategies.
+        </p>
+        <div class="tag-row">
+          <span class="tech-tag">R</span>
+          <span class="tech-tag">Numerical Methods</span>
+          <span class="tech-tag">ODE Systems</span>
+          <span class="tech-tag">Public Health</span>
+          <span class="tech-tag">Next-Generation Matrix</span>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="proj-card fadein">
+        <span class="proj-tag pt-violet">Survey Research · 2025(6months)</span>
+        <h3>Youth Agricultural Exodus - Survey Study</h3>
+        <p>
+          Designed and administered a structured survey across two institutions (CPUT and Elsenburg College)
+          to collect primary data on student attitudes toward agriculture. Cleaned survey data using R and
+          Excel; conducted reliability testing (Cronbach's alpha) and descriptive statistical analysis.
+          Key finding: students with rural or farm upbringings showed significantly more positive attitudes
+          toward agricultural careers, providing actionable insights for education and youth recruitment.
+        </p>
+        <div class="tag-row">
+          <span class="tech-tag">R</span>
+          <span class="tech-tag">Excel</span>
+          <span class="tech-tag">Cronbach's Alpha</span>
+          <span class="tech-tag">Survey Design</span>
+          <span class="tech-tag">Descriptive Statistics</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     EDUCATION
+════════════════════════════════════════════ -->
+<section class="section alt" id="education">
+  <div class="inner">
+    <p class="s-label">Academic Background</p>
+    <h2 class="s-title">Education</h2>
+
+    <div class="edu-grid">
+
+      <div class="edu-card fadein">
+        <div class="year">✅ Completed December 2025</div>
+        <h3>Diploma in Mathematical Sciences</h3>
+        <div class="inst">Cape Peninsula University of Technology (CPUT)</div>
+        <p>
+          <strong>Stream:</strong> Applied Science<br/>
+          <strong>Key Modules:</strong> Mathematics 1A–3B, Numerical Methods, Operations Research,
+          Statistics 1A–3, Biostatistics, Data Management, Python, Statistical Programming,
+          Mathematical Science Project
+        </p>
+      </div>
+
+      <div class="edu-card fadein">
+        <div class="year">📜 2020 · Matric</div>
+        <h3>National Senior Certificate</h3>
+        <div class="inst">Nyameko High School</div>
+        <p>
+          <strong>Subjects:</strong> Mathematics, Physical Sciences, Life Sciences,
+          Accounting, English FAL, IsiXhosa Home Language<br/><br/>
+          Met minimum requirements for admission to diploma and higher certificate study.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     CONTACT
+════════════════════════════════════════════ -->
+<section class="section" id="contact">
+  <div class="inner">
+    <p class="s-label">Let's Connect</p>
+    <h2 class="s-title">Contact Me</h2>
+    <p class="s-desc">
+      I'm actively looking for opportunities in data analytics, statistics, and data science.
+      Feel free to reach out, I'd love to hear from you.
+    </p>
+
+    <div class="contact-wrap">
+
+      <a class="contact-card fadein" href="mailto:mdkmadikazi@gmail.com">
+        <div class="c-icon">📧</div>
+        <div>
+          <div class="c-label">Email</div>
+          <div class="c-value">mdkmadikazi@gmail.com</div>
+        </div>
+      </a>
+
+      <a class="contact-card fadein" href="tel:+27838643511">
+        <div class="c-icon">📞</div>
+        <div>
+          <div class="c-label">Phone</div>
+          <div class="c-value">083 864 3511</div>
+        </div>
+      </a>
+
+      <a class="contact-card fadein" href="https://www.linkedin.com/in/anathi-madikazi-7566b7408" target="_blank">
+        <div class="c-icon">💼</div>
+        <div>
+          <div class="c-label">LinkedIn</div>
+          <div class="c-value">anathi-madikazi-7566b7408</div>
+        </div>
+      </a>
+
+      <a class="contact-card fadein" href="https://github.com/Madikazi" target="_blank">
+        <div class="c-icon">🐱</div>
+        <div>
+          <div class="c-label">GitHub</div>
+          <div class="c-value">github.com/Madikazi</div>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- References -->
+    <div style="margin-top:2.5rem;">
+      <p class="s-label" style="margin-bottom:.8rem;">References</p>
+      <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:1rem;">
+        <div class="info-card fadein">
+          <h4>Academic Reference</h4>
+          <p style="font-size:.88rem; font-weight:500;">Dr. T. Farrar</p>
+          <p style="font-size:.82rem; color:var(--muted);">Cape Peninsula University of Technology<br/>
+          📧 Farrart@cput.ac.za · 📞 084 859 6609</p>
+        </div>
+        <div class="info-card fadein">
+          <h4>Professional Reference</h4>
+          <p style="font-size:.88rem; font-weight:500;">Mrs. V. Barends</p>
+          <p style="font-size:.82rem; color:var(--muted);">Western Cape Department of Agriculture<br/>
+          📞 065 949 8559</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
+<footer>
+  <p>© 2025 <strong>Anathi Madikazi</strong> · Mathematical Sciences Graduate · Cape Town, South Africa</p>
+  <p style="margin-top:.4rem; font-size:.74rem;">Built with HTML, CSS &amp; JavaScript</p>
+</footer>
+
+
+<!-- ══════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════════ -->
+<script>
+  // Fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fadein').forEach(el => observer.observe(el));
+
+  // Active nav highlight on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 80) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === `#${current}`);
+    });
+  });
+</script>
+
+</body>
+</html>
